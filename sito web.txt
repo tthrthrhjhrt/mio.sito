@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>Hops Pub · Caerano di San Marco</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com" />
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+ <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant+SC:wght@400;500;600&display=swap" rel="stylesheet" />
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+ :root {
+ --nero: #0d0a07;
+ --ambra: #c8902a;
+ --oro: #e2b14a;
+ --crema: #f5f0e8;
+ --lino: #ede5d5;
+ --marrone: #3a2912;
+ --testo: #2a1e0e;
+ --grigio: #7a6a56;
+ }
+
+ html { scroll-behavior: smooth; }
+
+ body {
+ background: var(--nero);
+ color: var(--crema);
+ font-family: 'EB Garamond', serif;
+ font-size: 18px;
+ line-height: 1.7;
+ overflow-x: hidden;
+ }
+
+ /* ─── GRAIN OVERLAY ─── */
+ body::before {
+ content: '';
+ position: fixed;
+ inset: 0;
+ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+ pointer-events: none;
+ z-index: 9999;
+ opacity: 0.5;
+ }
+
+ /* ─── HERO ─── */
+ .hero {
+ min-height: 100vh;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ text-align: center;
+ position: relative;
+ padding: 3rem 2rem;
+ background:
+ radial-gradient(ellipse 70% 60% at 50% 100%, rgba(200,144,42,0.18) 0%, transparent 70%),
+ linear-gradient(170deg, #0d0a07 0%, #1a1007 40%, #0d0a07 100%);
+ }
+
+ .hero-ornament {
+ color: var(--ambra);
+ font-size: 1.1rem;
+ letter-spacing: 0.35em;
+ font-family: 'Cormorant SC', serif;
+ text-transform: uppercase;
+ opacity: 0.75;
+ margin-bottom: 1.2rem;
+ animation: fadeUp 1.2s ease both;
+ }
+
+ .hero h1 {
+ font-family: 'Playfair Display', serif;
+ font-size: clamp(3.8rem, 10vw, 8rem);
+ font-weight: 700;
+ letter-spacing: 0.02em;
+ line-height: 0.9;
+ color: var(--crema);
+ animation: fadeUp 1.2s 0.15s ease both;
+ }
+
+ .hero h1 span {
+ display: block;
+ color: var(--ambra);
+ font-style: italic;
+ font-size: 0.55em;
+ letter-spacing: 0.12em;
+ margin-top: 0.4em;
+ }
+
+ .hero-divider {
+ width: 180px;
+ height: 1px;
+ background: linear-gradient(90deg, transparent, var(--ambra), transparent);
+ margin: 2rem auto;
+ animation: fadeUp 1.2s 0.3s ease both;
+ }
+
+ .hero-tagline {
+ font-family: 'EB Garamond', serif;
+ font-style: italic;
+ font-size: 1.25rem;
+ color: var(--lino);
+ max-width: 480px;
+ opacity: 0.85;
+ animation: fadeUp 1.2s 0.45s ease both;
+ }
+
+ .hero-badges {
+ display: flex;
+ gap: 1.2rem;
+ margin-top: 2.5rem;
+ flex-wrap: wrap;
+ justify-content: center;
+ animation: fadeUp 1.2s 0.6s ease both;
+ }
+
+ .badge {
+ border: 1px solid rgba(200,144,42,0.4);
+ color: var(--oro);
+ font-family: 'Cormorant SC', serif;
+ font-size: 0.72rem;
+ letter-spacing: 0.2em;
+ padding: 0.4rem 1rem;
+ text-transform: uppercase;
+ }
+
+ .hero-cta {
+ margin-top: 3rem;
+ animation: fadeUp 1.2s 0.75s ease both;
+ }
+
+ .btn {
+ display: inline-block;
+ background: var(--ambra);
+ color: var(--nero);
+ font-family: 'Cormorant SC', serif;
+ font-size: 0.85rem;
+ letter-spacing: 0.25em;
+ text-transform: uppercase;
+ padding: 0.85rem 2.2rem;
+ text-decoration: none;
+ transition: background 0.3s, color 0.3s;
+ }
+
+ .btn:hover { background: var(--oro); }
+
+ .btn-outline {
+ display: inline-block;
+ border: 1px solid var(--ambra);
+ color: var(--ambra);
+ font-family: 'Cormorant SC', serif;
+ font-size: 0.85rem;
+ letter-spacing: 0.25em;
+ text-transform: uppercase;
+ padding: 0.85rem 2.2rem;
+ text-decoration: none;
+ margin-left: 1rem;
+ transition: background 0.3s, color 0.3s;
+ }
+
+ .btn-outline:hover { background: rgba(200,144,42,0.15); }
+
+ /* ─── NAV ─── */
+ nav {
+ position: sticky;
+ top: 0;
+ z-index: 100;
+ background: rgba(13,10,7,0.96);
+ backdrop-filter: blur(8px);
+ border-bottom: 1px solid rgba(200,144,42,0.2);
+ }
+
+ nav ul {
+ display: flex;
+ justify-content: center;
+ gap: 2.5rem;
+ list-style: none;
+ padding: 1rem 2rem;
+ flex-wrap: wrap;
+ }
+
+ nav a {
+ font-family: 'Cormorant SC', serif;
+ font-size: 0.8rem;
+ letter-spacing: 0.2em;
+ text-transform: uppercase;
+ color: var(--lino);
+ text-decoration: none;
+ transition: color 0.2s;
+ }
+
+ nav a:hover { color: var(--ambra); }
+
+ /* ─── SECTIONS ─── */
+ section { padding: 6rem 2rem; }
+
+ .section-inner {
+ max-width: 900px;
+ margin: 0 auto;
+ }
+
+ .section-label {
+ font-family: 'Cormorant SC', serif;
+ font-size: 0.72rem;
+ letter-spacing: 0.35em;
+ text-transform: uppercase;
+ color: var(--ambra);
+ margin-bottom: 0.8rem;
+ display: flex;
+ align-items: center;
+ gap: 1rem;
+ }
+
+ .section-label::before,
+ .section-label::after {
+ content: '';
+ flex: 1;
+ height: 1px;
+ background: rgba(200,144,42,0.3);
+ }
+
+ .section-label::before { display: none; }
+
+ h2 {
+ font-family: 'Playfair Display', serif;
+ font-size: clamp(2rem, 5vw, 3.2rem);
+ font-weight: 600;
+ color: var(--crema);
+ line-height: 1.1;
+ margin-bottom: 1.5rem;
+ }
+
+ h3 {
+ font-family: 'Playfair Display', serif;
+ font-size: 1.35rem;
+ font-weight: 600;
+ color: var(--oro);
+ margin-bottom: 0.4rem;
+ }
+
+ p { color: rgba(245,240,232,0.82); margin-bottom: 1rem; }
+
+ /* ─── STORIA ─── */
+ #storia { background: var(--nero); }
+
+ .storia-grid {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 4rem;
+ align-items: center;
+ margin-top: 3rem;
+ }
+
+ @media (max-width: 700px) {
+ .storia-grid { grid-template-columns: 1fr; gap: 2rem; }
+ }
+
+ .storia-visual {
+ position: relative;
+ height: 360px;
+ }
+
+ .storia-box {
+ position: absolute;
+ border: 1px solid rgba(200,144,42,0.25);
+ background: rgba(200,144,42,0.04);
+ }
+
+ .storia-box:nth-child(1) {
+ inset: 0 2rem 2rem 0;
+ }
+
+ .storia-box:nth-child(2) {
+ inset: 2rem 0 0 2rem;
+ background: rgba(200,144,42,0.07);
+ }
+
+ .storia-quote {
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ font-family: 'Playfair Display', serif;
+ font-style: italic;
+ font-size: 1.5rem;
+ color: var(--ambra);
+ text-align: center;
+ width: 80%;
+ line-height: 1.4;
+ z-index: 2;
+ }
+
+ /* ─── BIRRE ─── */
+ #birre {
+ background: linear-gradient(180deg, var(--nero) 0%, #120c04 50%, var(--nero) 100%);
+ }
+
+ .beer-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+ gap: 2rem;
+ margin-top: 3rem;
+ }
+
+ @media (max-width: 500px) {
+ .beer-grid { grid-template-columns: 1fr; }
+ }
+
+ .beer-card {
+ border: 1px solid rgba(200,144,42,0.2);
+ padding: 1.8rem;
+ position: relative;
+ transition: border-color 0.3s, background 0.3s;
+ }
+
+ .beer-card:hover {
+ border-color: rgba(200,144,42,0.55);
+ background: rgba(200,144,42,0.04);
+ }
+
+ .beer-tag {
+ font-family: 'Cormorant SC', serif;
+ font-size: 0.65rem;
+ letter-spacing: 0.25em;
+ color: var(--ambra);
+ text-transform: uppercase;
+ margin-bottom: 0.5rem;
+ }
+
+ .beer-name {
+ font-family: 'Playfair Display', serif;
+ font-size: 1.45rem;
+ font-weight: 600;
+ color: var(--crema);
+ margin-bottom: 0.3rem;
+ }
+
+ .beer-style {
+ font-family: 'Cormorant SC', serif;
+ font-size: 0.75rem;
+ letter-spacing: 0.15em;
+ color: var(--oro);
+ margin-bottom: 0.9rem;
+ text-transform: uppercase;
+ }
+
+ .beer-desc {
+ font-size: 0.9rem;
+ line-height: 1.65;
+ color: rgba(245,240,232,0.72);
+ }
+
+ .beer-formats {
+ margin-top: 1rem;
+ display: flex;
+ gap: 0.5rem;
+ }
+
+ .format-pill {
+ border: 1px solid rgba(200,144,42,0.3);
+ color: var(--ambra);
+ font-family: 'Cormorant SC', serif;
+ font-size: 0.65rem;
+ letter-spacing: 0.15em;
+ padding: 0.2rem 0.55rem;
+ }
+
+ .beer-note {
+ background: rgba(200,144,42,0.06);
+ border-left: 2px solid var(--ambra);
+ padding: 1.2rem 1.8rem;
+ margin-top: 2.5rem;
+ font-style: italic;
+ color: rgba(245,240,232,0.75);
+ font-size: 0.95rem;
+ }
+
+ /* ─── CUCINA ─── */
+ #cucina { background: var(--nero); }
+
+ .menu-category {
+ margin-top: 3.5rem;
+ }
+
+ .category-title {
+ font-family: 'Cormorant SC', serif;
+ font-size: 0.7rem;
+ letter-spacing: 0.3em;
+ color: var(--ambra);
+ text-transform: uppercase;
+ border-bottom: 1px solid rgba(200,144,42,0.2);
+ padding-bottom: 0.6rem;
+ margin-bottom: 2rem;
+ }
+
+ .menu-item {
+ display: grid;
+ grid-template-columns: 1fr auto;
+ gap: 1rem;
+ padding: 1.2rem 0;
+ border-bottom: 1px solid rgba(245,240,232,0.06);
+ align-items: start;
+ }
+
+ .menu-item:last-child { border-bottom: none; }
+
+ .item-name {
+ font-family: 'Playfair Display', serif;
+ font-size: 1.1rem;
+ color: var(--crema);
+ margin-bottom: 0.2rem;
+ }
+
+ .item-desc {
+ font-size: 0.85rem;
+ color: rgba(245,240,232,0.6);
+ line-height: 1.5;
+ }
+
+ .item-allergens {
+ font-size: 0.72rem;
+ color: rgba(200,144,42,0.6);
+ margin-top: 0.3rem;
+ }
+
+ .sauce-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+ gap: 0.8rem;
+ margin-top: 1.5rem;
+ }
+
+ .sauce-item {
+ border: 1px solid rgba(200,144,42,0.15);
+ padding: 0.7rem 1rem;
+ font-family: 'Cormorant SC', serif;
+ font-size: 0.78rem;
+ letter-spacing: 0.1em;
+ color: var(--lino);
+ text-transform: uppercase;
+ }
+
+ /* ─── DOLCI ─── */
+ #dolci {
+ background: linear-gradient(180deg, var(--nero) 0%, #130e06 100%);
+ }
+
+ .dolci-grid {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 2rem;
+ margin-top: 3rem;
+ }
+
+ @media (max-width: 600px) {
+ .dolci-grid { grid-template-columns: 1fr; }
+ }
+
+ .dolce-card {
+ border: 1px solid rgba(200,144,42,0.18);
+ padding: 2rem;
+ text-align: center;
+ transition: border-color 0.3s, background 0.3s;
+ }
+
+ .dolce-card:hover {
+ border-color: rgba(200,144,42,0.5);
+ background: rgba(200,144,42,0.04);
+ }
+
+ .dolce-icon {
+ font-size: 2.2rem;
+ margin-bottom: 0.8rem;
+ display: block;
+ }
+
+ .dolce-name {
+ font-family: 'Playfair Display', serif;
+ font-size: 1.1rem;
+ font-weight: 600;
+ color: var(--crema);
+ margin-bottom: 0.5rem;
+ }
+
+ .dolce-desc {
+ font-size: 0.85rem;
+ color: rgba(245,240,232,0.65);
+ font-style: italic;
+ }
+
+ /* ─── RECENSIONI ─── */
+ #recensioni {
+ background: #0a0804;
+ border-top: 1px solid rgba(200,144,42,0.12);
+ border-bottom: 1px solid rgba(200,144,42,0.12);
+ }
+
+ .stars {
+ color: var(--ambra);
+ font-size: 1.1rem;
+ letter-spacing: 0.1em;
+ margin-bottom: 0.6rem;
+ }
+
+ .reviews-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+ gap: 2rem;
+ margin-top: 3rem;
+ }
+
+ .review-card {
+ border: 1px solid rgba(200,144,42,0.15);
+ padding: 1.8rem;
+ }
+
+ .review-text {
+ font-style: italic;
+ font-size: 1rem;
+ color: rgba(245,240,232,0.8);
+ margin-bottom: 1.2rem;
+ line-height: 1.65;
+ }
+
+ .reviewer {
+ font-family: 'Cormorant SC', serif;
+ font-size: 0.72rem;
+ letter-spacing: 0.2em;
+ color: var(--ambra);
+ text-transform: uppercase;
+ }
+
+ .review-date {
+ font-size: 0.75rem;
+ color: var(--grigio);
+ margin-top: 0.2rem;
+ }
+
+ .rating-summary {
+ text-align: center;
+ margin-top: 3rem;
+ padding: 2rem;
+ border: 1px solid rgba(200,144,42,0.2);
+ }
+
+ .rating-big {
+ font-family: 'Playfair Display', serif;
+ font-size: 5rem;
+ color: var(--ambra);
+ line-height: 1;
+ }
+
+ .rating-label {
+ font-family: 'Cormorant SC', serif;
+ font-size: 0.7rem;
+ letter-spacing: 0.3em;
+ color: var(--grigio);
+ text-transform: uppercase;
+ margin-top: 0.5rem;
+ }
+
+ /* ─── ORARI E INFO ─── */
+ #info { background: var(--nero); }
+
+ .info-grid {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 4rem;
+ margin-top: 3rem;
+ }
+
+ @media (max-width: 650px) {
+ .info-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+ }
+
+ .orari-table {
+ width: 100%;
+ border-collapse: collapse;
+ }
+
+ .orari-table tr {
+ border-bottom: 1px solid rgba(245,240,232,0.07);
+ }
+
+ .orari-table td {
+ padding: 0.65rem 0;
+ font-size: 0.95rem;
+ color: rgba(245,240,232,0.8);
+ }
+
+ .orari-table td:last-child {
+ text-align: right;
+ color: var(--oro);
+ font-family: 'Cormorant SC', serif;
+ letter-spacing: 0.1em;
+ }
+
+ .day-chiuso td:last-child {
+ color: rgba(200,144,42,0.4) !important;
+ }
+
+ .info-block {
+ margin-bottom: 2rem;
+ }
+
+ .info-block-label {
+ font-family: 'Cormorant SC', serif;
+ font-size: 0.68rem;
+ letter-spacing: 0.3em;
+ text-transform: uppercase;
+ color: var(--ambra);
+ margin-bottom: 0.5rem;
+ }
+
+ .info-block p {
+ margin: 0;
+ font-size: 1rem;
+ color: rgba(245,240,232,0.8);
+ }
+
+ .info-block a {
+ color: var(--oro);
+ text-decoration: none;
+ transition: color 0.2s;
+ }
+
+ .info-block a:hover { color: var(--crema); }
+
+ .feature-list {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 0.6rem;
+ margin-top: 0.5rem;
+ }
+
+ .feature {
+ border: 1px solid rgba(200,144,42,0.25);
+ font-family: 'Cormorant SC', serif;
+ font-size: 0.7rem;
+ letter-spacing: 0.15em;
+ color: var(--lino);
+ padding: 0.3rem 0.8rem;
+ text-transform: uppercase;
+ }
+
+ .map-placeholder {
+ width: 100%;
+ aspect-ratio: 16/9;
+ border: 1px solid rgba(200,144,42,0.2);
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ gap: 0.8rem;
+ background: rgba(200,144,42,0.03);
+ margin-top: 1rem;
+ }
+
+ .map-placeholder span {
+ font-family: 'Cormorant SC', serif;
+ font-size: 0.75rem;
+ letter-spacing: 0.2em;
+ color: var(--ambra);
+ text-transform: uppercase;
+ }
+
+ .map-placeholder a {
+ color: var(--oro);
+ font-size: 0.9rem;
+ text-decoration: none;
+ }
+
+ /* ─── CTA STRIP ─── */
+ .cta-strip {
+ background: var(--ambra);
+ padding: 3.5rem 2rem;
+ text-align: center;
+ }
+
+ .cta-strip h2 {
+ color: var(--nero);
+ font-family: 'Playfair Display', serif;
+ font-size: clamp(1.6rem, 4vw, 2.5rem);
+ margin-bottom: 1rem;
+ }
+
+ .cta-strip p {
+ color: rgba(13,10,7,0.7);
+ margin-bottom: 1.8rem;
+ }
+
+ .cta-strip .btn-dark {
+ background: var(--nero);
+ color: var(--crema);
+ font-family: 'Cormorant SC', serif;
+ font-size: 0.85rem;
+ letter-spacing: 0.25em;
+ text-transform: uppercase;
+ padding: 0.85rem 2.2rem;
+ text-decoration: none;
+ display: inline-block;
+ transition: background 0.3s;
+ }
+
+ .cta-strip .btn-dark:hover { background: var(--marrone); }
+
+ /* ─── FOOTER ─── */
+ footer {
+ background: #060403;
+ padding: 3rem 2rem;
+ text-align: center;
+ border-top: 1px solid rgba(200,144,42,0.12);
+ }
+
+ .footer-logo {
+ font-family: 'Playfair Display', serif;
+ font-size: 2rem;
+ font-weight: 700;
+ color: var(--ambra);
+ letter-spacing: 0.08em;
+ margin-bottom: 0.3rem;
+ }
+
+ .footer-sub {
+ font-family: 'Cormorant SC', serif;
+ font-size: 0.65rem;
+ letter-spacing: 0.35em;
+ color: var(--grigio);
+ text-transform: uppercase;
+ margin-bottom: 2rem;
+ }
+
+ footer p {
+ font-size: 0.82rem;
+ color: var(--grigio);
+ margin: 0;
+ }
+
+ .footer-links {
+ display: flex;
+ justify-content: center;
+ gap: 2rem;
+ margin: 1.5rem 0;
+ }
+
+ .footer-links a {
+ font-family: 'Cormorant SC', serif;
+ font-size: 0.68rem;
+ letter-spacing: 0.2em;
+ text-transform: uppercase;
+ color: rgba(245,240,232,0.4);
+ text-decoration: none;
+ transition: color 0.2s;
+ }
+
+ .footer-links a:hover { color: var(--ambra); }
+
+ /* ─── ANIMATIONS ─── */
+ @keyframes fadeUp {
+ from { opacity: 0; transform: translateY(22px); }
+ to { opacity: 1; transform: translateY(0); }
+ }
+
+ .reveal {
+ opacity: 0;
+ transform: translateY(28px);
+ transition: opacity 0.8s ease, transform 0.8s ease;
+ }
+
+ .reveal.visible {
+ opacity: 1;
+ transform: translateY(0);
+ }
+
+ /* scrollbar */
+ ::-webkit-scrollbar { width: 5px; }
+ ::-webkit-scrollbar-track { background: var(--nero); }
+ ::-webkit-scrollbar-thumb { background: rgba(200,144,42,0.35); border-radius: 2px; }
+
+ /* ─── DECORATIVE RULE ─── */
+ .ornamental-rule {
+ display: flex;
+ align-items: center;
+ gap: 1.2rem;
+ margin: 1.5rem 0 2.5rem;
+ }
+
+ .ornamental-rule::before,
+ .ornamental-rule::after {
+ content: '';
+ flex: 1;
+ height: 1px;
+ background: linear-gradient(90deg, transparent, rgba(200,144,42,0.5), transparent);
+ }
+
+ .ornamental-rule-center {
+ color: var(--ambra);
+ font-size: 1.1rem;
+ }
+ </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+<section class="hero">
+ <p class="hero-ornament">Caerano di San Marco · Treviso · Veneto</p>
+ <h1>Hops<span>Gastropub</span></h1>
+ <div class="hero-divider"></div>
+ <p class="hero-tagline">Birre artigianali di eccellenza, cucina creativa e un'atmosfera che scalda il cuore — a due passi da Montebelluna.</p>
+ <div class="hero-badges">
+ <span class="badge">Birre Artigianali</span>
+ <span class="badge">Cocktail di Qualità</span>
+ <span class="badge">Tavoli all'Aperto</span>
+ <span class="badge">Sport in TV</span>
+ </div>
+ <div class="hero-cta">
+ <a href="#menu" class="btn">Scopri il Menu</a>
+ <a href="#info" class="btn-outline">Orari & Contatti</a>
+ </div>
+</section>
+
+<!-- ═══════════════════════════ NAV ═══════════════════════════ -->
+<nav>
+ <ul>
+ <li><a href="#storia">Il Locale</a></li>
+ <li><a href="#birre">Le Birre</a></li>
+ <li><a href="#cucina">Cucina</a></li>
+ <li><a href="#dolci">Dolci</a></li>
+ <li><a href="#recensioni">Recensioni</a></li>
+ <li><a href="#info">Info & Orari</a></li>
+ </ul>
+</nav>
+
+<!-- ═══════════════════════════ STORIA ═══════════════════════════ -->
+<section id="storia">
+ <div class="section-inner">
+ <p class="section-label">Il Locale</p>
+ <h2>Un Angolo di Autentica<br><em>Cultura Brassicola</em></h2>
+ <div class="ornamental-rule"><span class="ornamental-rule-center">✦</span></div>
+
+ <div class="storia-grid reveal">
+ <div>
+ <p>Hops nasce dall'amore per la birra artigianale e per la buona cucina. Situato in Via San Marco 71 a Caerano di San Marco, nel cuore del Trevigiano, è un gastropub che unisce la tradizione dei pub nordeuropei alla creatività gastronomica italiana.</p>
+ <p>Con oltre 2.600 appassionati che ci seguono online e quasi 1.200 ospiti che hanno vissuto di persona l'esperienza Hops, siamo diventati un punto di riferimento per chi cerca qualità, convivialità e autenticità.</p>
+ <p>Il locale è in continua evoluzione: dalle birre in spina selezionate — sei etichette artigianali più due stagionali a rotazione, tutte spillate direttamente dalla cella frigorifera — alle carni di primissima scelta dei migliori fornitori del territorio.</p>
+ </div>
+ <div class="storia-visual">
+ <div class="storia-box"></div>
+ <div class="storia-box"></div>
+ <div class="storia-quote">"Un ambiente familiare e accogliente, a due passi dal centro di Montebelluna."</div>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════ BIRRE ═══════════════════════════ -->
+<section id="birre">
+ <div class="section-inner">
+ <p class="section-label">Le Nostre Birre</p>
+ <h2>Selezione di<br><em>Birre alla Spina</em></h2>
+ <div class="ornamental-rule"><span class="ornamental-rule-center">✦</span></div>
+ <p>Sei birre artigianali in spina più due stagionali a rotazione. Stoccate in cella frigorifera e spillate direttamente da essa, per mantenere integri aromi e profumi, garantire una gasatura inferiore e una leggerezza nella bevuta fuori dal comune.</p>
+
+ <div class="beer-grid reveal">
+
+ <div class="beer-card">
+ <p class="beer-tag">Birra 1 di 6</p>
+ <p class="beer-name">Edelhopfen Pils</p>
+ <p class="beer-style">Pilsner · 4,9% vol.</p>
+ <p class="beer-desc">La nostra pregiata pils dal colore dorato con bella schiuma compatta. Al naso emergono profumi di pane e fiori freschi; in bocca sorprende con un corpo rotondo iniziale, equilibrato da un finale secco e piacevolmente fresco.</p>
+ <div class="beer-formats">
+ <span class="format-pill">0,30 cl</span>
+ <span class="format-pill">0,40 cl</span>
+ </div>
+ </div>
+
+ <div class="beer-card">
+ <p class="beer-tag">Birra 2 di 6</p>
+ <p class="beer-name">Roman Blanche</p>
+ <p class="beer-style">Blanche · 5,0% vol.</p>
+ <p class="beer-desc">Con aggiunta di frumento, scorza d'arancia e curaçao, è uno dei più deliziosi prodotti delle ardenne fiamminghe. Classica birra "bianca", dal sapore fruttato e leggermente acidulo, in perfetto equilibrio grazie all'altissima qualità dell'acqua.</p>
+ <div class="beer-formats">
+ <span class="format-pill">0,25 cl</span>
+ <span class="format-pill">0,40 cl</span>
+ </div>
+ </div>
+
+ <div class="beer-card">
+ <p class="beer-tag">Birra 3 di 6</p>
+ <p class="beer-name">Sloeber</p>
+ <p class="beer-style">Ale Belga Rossa · 7,2% vol.</p>
+ <p class="beer-desc">In fiammingo significa "pazzerellone". Si presenta di color rosso acceso con schiuma bianca finissima. Al naso e in bocca una festa di sapori: dal caramello ai frutti rossi, per un finale fresco e asciutto inaspettato. Un divertimento da bere!</p>
+ <div class="beer-formats">
+ <span class="format-pill">0,25 cl</span>
+ <span class="format-pill">0,40 cl</span>
+ </div>
+ </div>
+
+ <div class="beer-card">
+ <p class="beer-tag">Birra 4 di 6</p>
+ <p class="beer-name">De Ranke Guldenberg</p>
+ <p class="beer-style">Abbey Triple · 8,5% vol.</p>
+ <p class="beer-desc">La primogenita del birrificio: colore dorato opalescente con cappello di schiuma bianca persistente. Naso fantastico con aromi erbacei, fruttati e leggermente agrumati. In bocca esplodono note fruttate con finale secco, lievemente balsamico.</p>
+ <div class="beer-formats">
+ <span class="format-pill">0,25 cl</span>
+ <span class="format-pill">0,40 cl</span>
+ </div>
+ </div>
+
+ <div class="beer-card">
+ <p class="beer-tag">Birra 5 di 6</p>
+ <p class="beer-name">Ducato Freeride</p>
+ <p class="beer-style">IPA · 5,2% vol. · Made in Italy</p>
+ <p class="beer-desc">Birra italiana tutta da scoprire. Colore aranciato, schiuma pannosa, profumi di agrumi, frutta fresca ed esotica, resina di pino. In bocca: miele e caramello iniziali, poi note erbacee e fruttate per un finale asciutto, amaro, lungo ed elegante.</p>
+ <div class="beer-formats">
+ <span class="format-pill">0,25 cl</span>
+ <span class="format-pill">0,40 cl</span>
+ </div>
+ </div>
+
+ <div class="beer-card" style="border-style: dashed; opacity: 0.7;">
+ <p class="beer-tag">Stagionali</p>
+ <p class="beer-name">2 Birre a Rotazione</p>
+ <p class="beer-style">Selezione Stagionale</p>
+ <p class="beer-desc">Due birre stagionali in continua rotazione, scelte tra le migliori etichette artigianali estere e italiane. Chiedi al bancone la selezione del momento!</p>
+ </div>
+
+ </div>
+
+ <div class="beer-note reveal">
+ ✦ Tutte le birre sono stoccate in cella frigorifera e spinate direttamente da essa, per preservarne integri aromi e profumi, garantire una gasatura ottimale e offrire una bevuta di leggerezza superiore alla media.
+ </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════ CUCINA ═══════════════════════════ -->
+<section id="cucina" id="menu">
+ <div class="section-inner">
+ <p class="section-label">La Cucina</p>
+ <h2>Non Solo Manzo —<br><em>Burger d'Autore</em></h2>
+ <div class="ornamental-rule"><span class="ornamental-rule-center">✦</span></div>
+ <p>Carni di primissima scelta selezionate dai migliori fornitori del territorio, abbinate a ingredienti creativi e insoliti per burger fuori dal comune. Utilizziamo solo ingredienti di qualità, con ricette pensate per stupire ad ogni morso.</p>
+
+ <!-- BURGER -->
+ <div class="menu-category reveal">
+ <p class="category-title">Burger Speciali</p>
+
+ <div class="menu-item">
+ <div>
+ <p class="item-name">Sgombriccio</p>
+ <p class="item-desc">Bun kamut e avena, salsa Amager, filetti di sgombro, insalatina di radicchio rosso e melograno</p>
+ <p class="item-allergens">Allergeni: 1 · 3 · 4 · 7</p>
+ </div>
+ </div>
+
+ <div class="menu-item">
+ <div>
+ <p class="item-name">Funky Il Gallo</p>
+ <p class="item-desc">Bun alla barbabietola rossa, sovracoscia di pollo pastrami style fatta in casa, insalatina croccante, pancia di maiale affumicata, caesar sauce</p>
+ <p class="item-allergens">Allergeni: 1 · 3 · 7 (6)</p>
+ </div>
+ </div>
+
+ <div class="menu-item">
+ <div>
+ <p class="item-name">Bubba Gump Burger</p>
+ <p class="item-desc">Bun alla barbabietola rossa, code di mazzancolle panate, insalatina croccante, salsa yogurt, kiwano</p>
+ <p class="item-allergens">Allergeni: 1 · 2 · 3 · 4 · 7 (9 · 10)</p>
+ </div>
+ </div>
+ </div>
+
+ <!-- STUZZICHINI -->
+ <div class="menu-category reveal">
+ <p class="category-title">Stuzzichini & Fritti</p>
+
+ <div class="menu-item">
+ <div>
+ <p class="item-name">Il Piccante</p>
+ <p class="item-desc">Nugget di jalapeño ripieni di crema ai formaggi, serviti con salsa piccante e hops jam fatta in casa</p>
+ <p class="item-allergens">Allergeni: 1 · 7</p>
+ </div>
+ </div>
+
+ <div class="menu-item">
+ <div>
+ <p class="item-name">Il Pollo a Strisce</p>
+ <p class="item-desc">Morbido pollo a striscioline, panato e servito con la nostra salsa BBQ artigianale</p>
+ <p class="item-allergens">Allergeni: 1 (6 · 7 · 9)</p>
+ </div>
+ </div>
+
+ <div class="menu-item">
+ <div>
+ <p class="item-name">Terra d'Amare</p>
+ <p class="item-desc">Mix di polpettine alle alghe, tempura di verdurine miste e salvia panata con salsa Amager</p>
+ <p class="item-allergens">Allergeni: 1 · 3 · 4 · 7 (2-3-5-6-8-9-10-11-12-13-14)</p>
+ </div>
+ </div>
+
+ <div class="menu-item">
+ <div>
+ <p class="item-name">El "Bartlàz"</p>
+ <p class="item-desc">Tortello di piada ripieno di squacquerone e lattughino, servito con fiocco di mortadella</p>
+ <p class="item-allergens">Allergeni: 1 · 3 · 7 (6)</p>
+ </div>
+ </div>
+
+ <div class="menu-item">
+ <div>
+ <p class="item-name">Patate Crunchy Petals con Buccia</p>
+ <p class="item-desc">Croccanti patate con buccia tagliate a petalo, cotte alla perfezione</p>
+ </div>
+ </div>
+ </div>
+
+ <!-- SALSE -->
+ <div class="menu-category reveal">
+ <p class="category-title">Le Nostre Salse Artigianali</p>
+ <div class="sauce-grid">
+ <div class="sauce-item">Senape Dolce <span style="font-size:0.65rem; opacity:0.5; display:block;">(10)</span></div>
+ <div class="sauce-item">Piccante</div>
+ <div class="sauce-item">Amager <span style="font-size:0.65rem; opacity:0.5; display:block;">(1·3·4)</span></div>
+ <div class="sauce-item">Maiosé <span style="font-size:0.65rem; opacity:0.5; display:block;">(1·3·10)</span></div>
+ <div class="sauce-item">BBQ Hops <span style="font-size:0.65rem; opacity:0.5; display:block;">(1·3)</span></div>
+ <div class="sauce-item">Rosa <span style="font-size:0.65rem; opacity:0.5; display:block;">(1·3·10)</span></div>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════ DOLCI ═══════════════════════════ -->
+<section id="dolci">
+ <div class="section-inner">
+ <p class="section-label">I Dolci</p>
+ <h2>Fine Pasto<br><em>con Stile</em></h2>
+ <div class="ornamental-rule"><span class="ornamental-rule-center">✦</span></div>
+ <p>I dolci di Hops sono protagonisti assoluti. Come scrive un nostro ospite affezionato: "Le foto sono dei dolci, spettacolari! I panini non riusciamo a fotografarli, troppo buoni e li mangiamo subito." Provare per credere.</p>
+
+ <div class="dolci-grid reveal">
+ <div class="dolce-card">
+ <span class="dolce-icon"> </span>
+ <p class="dolce-name">Cheesecake ai Frutti di Bosco</p>
+ <p class="dolce-desc">Un classico reinterpretato con cura, cremoso e avvolgente, con la freschezza dei frutti di bosco.</p>
+ </div>
+ <div class="dolce-card">
+ <span class="dolce-icon"> </span>
+ <p class="dolce-name">Frolla con Crema alla Ricotta</p>
+ <p class="dolce-desc">Passion fruit, pesca e cioccolato bianco — un incontro di sapori delicato e sorprendente su base di frolla burrosa.</p>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════ RECENSIONI ═══════════════════════════ -->
+<section id="recensioni">
+ <div class="section-inner">
+ <p class="section-label">Cosa Dicono di Noi</p>
+ <h2>Le Voci<br><em>dei Nostri Ospiti</em></h2>
+ <div class="ornamental-rule"><span class="ornamental-rule-center">✦</span></div>
+
+ <div class="reviews-grid reveal">
+
+ <div class="review-card">
+ <div class="stars">★★★★★</div>
+ <p class="review-text">"Abbiamo preso un club sandwich e una sfiziosa, che dire, semplicemente ottimi. Ingredienti di qualità e ben combinati. Finalmente un pub che offre soluzioni interessanti!"</p>
+ <p class="reviewer">Maddalena Garda</p>
+ <p class="review-date">Google Reviews · 3 mesi fa</p>
+ </div>
+
+ <div class="review-card">
+ <div class="stars">★★★★★</div>
+ <p class="review-text">"Locale accogliente e ambiente perfetto per stare in compagnia con amici, famiglia, morosa. Vedo spesso clienti che apprezzano l'atmosfera autentica e il servizio attento."</p>
+ <p class="reviewer">Longwei Deng</p>
+ <p class="review-date">Google Reviews · un anno fa</p>
+ </div>
+
+ <div class="review-card">
+ <div class="stars">★★★★★</div>
+ <p class="review-text">"Le foto sono dei dolci, spettacolari! I panini non riusciamo a fotografarli, troppo buoni e li mangiamo subito."</p>
+ <p class="reviewer">Davide Bordin</p>
+ <p class="review-date">Google Reviews · 9 mesi fa</p>
+ </div>
+
+ <div class="review-card">
+ <div class="stars">★★★★★</div>
+ <p class="review-text">"Prima cosa che ci ha colpiti è il sorriso e la cordialità di chi ci ha accompagnati al tavolo e mostrato le variazioni del menu: solo per quel sorriso il posto merita il massimo."</p>
+ <p class="reviewer">Ospite TripAdvisor</p>
+ <p class="review-date">TripAdvisor · Recensione verificata</p>
+ </div>
+
+ <div class="review-card">
+ <div class="stars">★★★★★</div>
+ <p class="review-text">"Cena tarda per il Gruppo Alpini. Ci è stata offerta una degustazione delle specialità — ottima idea! Fritti, pizze e panini: tutto speciale, direi gourmet, abbiamo assaggiato davvero tutto."</p>
+ <p class="reviewer">Gruppo Alpini</p>
+ <p class="review-date">TripAdvisor · Recensione verificata</p>
+ </div>
+
+ </div>
+
+ <div class="rating-summary reveal">
+ <p class="rating-big">4.8</p>
+ <div class="stars" style="font-size:1.4rem; margin-top: 0.3rem;">★★★★★</div>
+ <p class="rating-label">TripAdvisor · Su 928 recensioni Google · #1 a Caerano di San Marco</p>
+ </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════ CTA ═══════════════════════════ -->
+<div class="cta-strip">
+ <h2>Prenota il Tuo Tavolo</h2>
+ <p>Chiamaci o scrivici su WhatsApp — siamo felici di accoglierti.</p>
+ <a href="tel:3334234783" class="btn-dark"> 333 423 4783</a>
+</div>
+
+<!-- ═══════════════════════════ INFO ═══════════════════════════ -->
+<section id="info">
+ <div class="section-inner">
+ <p class="section-label">Informazioni</p>
+ <h2>Orari, Contatti<br><em>& Come Raggiungerci</em></h2>
+ <div class="ornamental-rule"><span class="ornamental-rule-center">✦</span></div>
+
+ <div class="info-grid reveal">
+ <!-- Orari -->
+ <div>
+ <p class="section-label" style="margin-bottom: 1.5rem; font-size: 0.68rem;">Orari di Apertura</p>
+ <table class="orari-table">
+ <tr><td>Giovedì</td><td>18:00 – 01:00</td></tr>
+ <tr><td>Venerdì</td><td>18:00 – 02:00</td></tr>
+ <tr><td>Sabato</td><td>18:00 – 01:00</td></tr>
+ <tr><td>Domenica</td><td>18:00 – 00:00</td></tr>
+ <tr><td>Lunedì</td><td>18:00 – 00:00</td></tr>
+ <tr class="day-chiuso"><td>Martedì</td><td>Chiuso</td></tr>
+ <tr><td>Mercoledì</td><td>18:00 – 01:00</td></tr>
+ </table>
+
+ <div style="margin-top: 2rem;">
+ <p class="section-label" style="font-size: 0.68rem; margin-bottom: 1rem;">Servizi Disponibili</p>
+ <div class="feature-list">
+ <span class="feature">Tavoli all'aperto</span>
+ <span class="feature">Ottimi cocktail</span>
+ <span class="feature">Sport in TV</span>
+ <span class="feature">Parcheggio</span>
+ <span class="feature">WhatsApp</span>
+ </div>
+ </div>
+ </div>
+
+ <!-- Contatti -->
+ <div>
+ <div class="info-block">
+ <p class="info-block-label">Indirizzo</p>
+ <p>Via San Marco, 71<br>31031 Caerano di San Marco (TV)<br>Veneto, Italia</p>
+ </div>
+ <div class="info-block">
+ <p class="info-block-label">Telefono & WhatsApp</p>
+ <p><a href="tel:3334234783">333 423 4783</a></p>
+ </div>
+ <div class="info-block">
+ <p class="info-block-label">Social</p>
+ <p><a href="https://www.facebook.com/HopsGastropub/" target="_blank">Facebook · Hops Gastropub</a></p>
+ </div>
+ <div class="info-block">
+ <p class="info-block-label">Fascia di Prezzo</p>
+ <p>€ 10 – 20 a persona</p>
+ </div>
+
+ <div class="map-placeholder">
+ <span>Via San Marco, 71 · Caerano di San Marco</span>
+ <a href="https://maps.google.com/?q=Hops+Pub+Via+San+Marco+71+Caerano+di+San+Marco" target="_blank">Apri in Google Maps →</a>
+ </div>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+<footer>
+ <p class="footer-logo">Hops</p>
+ <p class="footer-sub">Gastropub · Caerano di San Marco</p>
+ <div class="footer-links">
+ <a href="#storia">Il Locale</a>
+ <a href="#birre">Le Birre</a>
+ <a href="#cucina">Cucina</a>
+ <a href="#dolci">Dolci</a>
+ <a href="#recensioni">Recensioni</a>
+ <a href="#info">Contatti</a>
+ </div>
+ <p>Via San Marco, 71 · 31031 Caerano di San Marco (TV) · Tel. 333 423 4783</p>
+ <p style="margin-top: 0.5rem; font-size: 0.75rem; opacity: 0.5;">© 2025 Hops Gastropub · Tutti i diritti riservati</p>
+</footer>
+
+<script>
+ // Scroll reveal
+ const revealEls = document.querySelectorAll('.reveal');
+ const observer = new IntersectionObserver((entries) => {
+ entries.forEach(e => {
+ if (e.isIntersecting) {
+ e.target.classList.add('visible');
+ observer.unobserve(e.target);
+ }
+ });
+ }, { threshold: 0.1 });
+ revealEls.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
